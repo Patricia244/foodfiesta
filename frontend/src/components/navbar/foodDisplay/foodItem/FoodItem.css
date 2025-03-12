@@ -1,0 +1,122 @@
+/* Food Item Container */
+.food-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 20rem; /* Adjust as needed */
+    margin: 1rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.food-item:hover {
+    transform: translateY(-0.3125rem); /* -5px in rem */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+/* Food Item Card */
+.food-item-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* Food Item Image Container */
+.food-item-image-container {
+    position: relative; /* Required for absolute positioning of quantity controls */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Food Item Image */
+.food-item-image {
+    width: 100%;
+    height: 15rem; 
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.food-item-quantity-container {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+.food-item-quantity{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.food-item-quantity p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.food-item-add-btn {
+    color: green;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.food-item-remove-btn {
+    color: red;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.food-item-add-btn:hover,
+.food-item-remove-btn:hover {
+    color: black;
+}
+
+.food-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.food-item-info p {
+    margin: 0;
+    text-align: start;
+}
+
+.food-item-info p:first-child {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.food-item-desc {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+.food-item-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ff6f61; 
+    margin: 0;
+}

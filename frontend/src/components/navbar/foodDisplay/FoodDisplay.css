@@ -1,0 +1,14 @@
+.food-display{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    border: 1px solid #e0e0e0;
+}
+.food-display-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+

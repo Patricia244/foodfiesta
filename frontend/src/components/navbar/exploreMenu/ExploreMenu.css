@@ -1,0 +1,42 @@
+.exploreMenu{
+    display: flex;
+    flex-direction: column;
+}
+
+.exploreMenu-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0;
+    list-style: none;
+}
+.exploreMenu-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.exploreMenu-item :hover{
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.exploreMenu-list img{
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    cursor: pointer;
+    animation: forwards 3s ease-in-out infinite;
+
+}
+
+.exploreMenu-list .active{
+    border: 3px solid black;
+    padding: 0.5rem;
+}
