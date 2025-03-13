@@ -33,6 +33,18 @@ if(cartItems){
 setCartItems(JSON.parse(cartItems))
 }   
 }, [])
+const getTotalCartAmount = ()=>{
+    let totalAmount = 0
+    for(const item in cartItems){
+        if(cartItems[item] >0){
+            const itemInfo = foodList.find(food => food.id === parseInt(item));
+            totalAmount += itemInfo.price * cartItems[item];
+        }
+        
+    }
+    return totalAmount
+
+}
 
 const contextValue = {
     foodList,
@@ -40,7 +52,7 @@ const contextValue = {
     addToCart,
     removeFromCart,
     clearCart,
-    setCartItems}
+    setCartItems, getTotalCartAmount}
 
 return (
 <StoreContext.Provider value={contextValue}>

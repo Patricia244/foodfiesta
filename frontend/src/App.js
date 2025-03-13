@@ -6,26 +6,25 @@ import CartItems from './pages/Cart/CartItems';
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import Login from './components/login/Login';
 import { useState } from 'react';
+
 function App() {
-  const [showLogin, setShowLogin]= useState(false)
-  
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <>
-    {showLogin? <Login setShowLogin={setShowLogin}/>:<></>}
+      {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <div className="App">
-      <Navbar className="navbar" setShowLogin ={setShowLogin}/>
-      <Home/>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/cart" element={<CartItems/>}/>
-        <Route path="/oder" element={<PlaceOrder/>}/>
-      </Routes>
-      <footer className="footer">
-        <p>&copy; 2023 FoodFiesta. All rights reserved.</p>
-      </footer>
-    </div>
+        <Navbar className="navbar" setShowLogin={setShowLogin} />
+        <Routes>
+          <Route path="/" element={<Home />} /> {/* Home page */}
+          <Route path="/cart" element={<CartItems />} /> {/* Cart page */}
+          <Route path="/order" element={<PlaceOrder />} /> {/* Place Order page */}
+        </Routes>
+        <footer className="footer">
+          <p>&copy; 2023 FoodFiesta. All rights reserved.</p>
+        </footer>
+      </div>
     </>
-  
   );
 }
 
