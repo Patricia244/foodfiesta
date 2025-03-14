@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import './Home.css'
 import backgroundImage from '../../assets/images/backgroundImage.jpg'
 import ExploreMenu from '../../components/navbar/exploreMenu/ExploreMenu'
-import FoodDisplay from '../../components/navbar/foodDisplay/FoodDisplay'
+import FoodDisplay from '../../components/navbar/foodDisplay/FoodDisplay' 
 function Home() {
   const [category,setCategory] = useState("all")
-  
+
   return (
     <div>
       <header className="header" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>

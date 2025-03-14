@@ -7,20 +7,22 @@ import { StoreContext } from '../../context/Context';
 import { useNavigate } from 'react-router-dom';
 
 function CartItems() {
-const { cartItems , foodList, removeFromCart, addToCart,getTotalCartAmount } = useContext(StoreContext);
-const navigate = useNavigate();
-  return (
-    <div className='cart-container'>
-      <div className="cartItems">
-        <div className="cartItems-title">
-          <h2>Your Cart</h2>
-        </div>
+  const { cartItems, foodList, removeFromCart, addToCart, getTotalCartAmount } = useContext(StoreContext);
+  const navigate = useNavigate();
 
-        {foodList.length === 0 ? (
-          <h3>Your cart is empty</h3>
-        ) : (
-          <>
-            <h3>Your cart</h3>
+  return (
+    <div className="cart-container">
+      {getTotalCartAmount() === 0 ? (
+        <div className="empty-cart">
+          <h2>Your cart is empty</h2>
+          <p>Looks like you haven't added anything to your cart yet</p>
+        </div>
+      ) : (
+        <>
+          <div className="cartItems">
+            <div className="cartItems-title">
+              <h2>Your Cart</h2>
+            </div>
             <table className="cart-table">
               <thead>
                 <tr>
@@ -34,10 +36,10 @@ const navigate = useNavigate();
               </thead>
               <tbody>
                 {foodList.map((item) => {
-                  if(!cartItems[item.id]) {
+                  if (!cartItems[item.id]) {
                     return null;
-                  }else{
-                    const total = cartItems[item.id] * item.price
+                  } else {
+                    const total = cartItems[item.id] * item.price;
                     return (
                       <tr key={item.id}>
                         <td>
@@ -45,15 +47,13 @@ const navigate = useNavigate();
                         </td>
                         <td>{item.name}</td>
                         <td>R{item.price}</td>
-  
                         <td>{cartItems[item.id]}</td>
                         <td>R{total}</td>
-                        <td >
+                        <td>
                           <div className="button-container">
-                          <DeleteOutlinedIcon onClick={() => removeFromCart(item.id)} className='cart-btn' />
-                          < AddCircleOutlineOutlinedIcon onClick={() => addToCart(item.id)} className='cart-btn'/>
+                            <DeleteOutlinedIcon onClick={() => removeFromCart(item.id)} className='cart-btn' />
+                            <AddCircleOutlineOutlinedIcon onClick={() => addToCart(item.id)} className='cart-btn' />
                           </div>
-                       
                         </td>
                       </tr>
                     );
@@ -61,42 +61,40 @@ const navigate = useNavigate();
                 })}
               </tbody>
             </table>
-          </>
-        )}
-      </div>
-      <div className="cart-bottom">
-        <div className="cart-total">
-          <div>
-            <div className="cart-total-details">
-              <p>Subtotal</p>
-              <p>R {getTotalCartAmount()}</p>
+          </div>
+          <div className="cart-bottom">
+            <div className="cart-total">
+              <div>
+                <div className="cart-total-details">
+                  <p>Subtotal</p>
+                  <p>R {getTotalCartAmount()}</p>
+                </div>
+                <hr />
+                <div className="cart-total-details">
+                  <p>Delivery fee</p>
+                  <p>R{getTotalCartAmount() !== 0 ? 100 : 0}</p>
+                </div>
+                <hr />
+                <div className="cart-total-details">
+                  <p>Total</p>
+                  <p>R {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 100}</p>
+                </div>
+              </div>
+              <button className="checkout-btn" onClick={() => navigate('/order')}>Checkout</button>
             </div>
-            <hr />
-            <div className="cart-total-details">
-              <p>Delivery fee</p>
-              <p>R{getTotalCartAmount() !==0? 100:0}</p>
-            </div>
-            <h/>
-            <div className="cart-total-details">
-              <p>Total</p>
-              <p>R {getTotalCartAmount() === 0? 0 :getTotalCartAmount() + 100}</p>
+            <div className="cart-promo-container">
+              <div>
+                <h3>Have a promo code?</h3>
+                <div className='promo-input'>
+                  <label>Enter your code here</label>
+                  <input type="text" placeholder="Enter promo code" />
+                  <button>Apply</button>
+                </div>
+              </div>
             </div>
           </div>
-          <button className="checkout-btn" onClick={()=>navigate('/order')}>Checkout</button>
-        </div>
-        <div className="cart-promo-container">
-          <div>
-            <h3>Have a promo code?</h3>
-            <div className='promo-input'>
-            <label>Enter your code here</label>
-            <input type="text" placeholder="Enter promo code" />
-            <button>Apply</button>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-     
+        </>
+      )}
     </div>
   );
 }
