@@ -6,20 +6,24 @@ import fs from "fs";
 export const addFoodItem = async (req, res) => {
   try {
     const { name, description, price, category } = req.body;
-    const image = req.file.filename;
+    const image = req.file;
+    if (!image) {
+      return res.status(400).json({ error: "Image is required" });
+    }
     const food = new foodModel({
       name,
       description,
       price,
-      image,
+      image: image.filename, 
       category,
     });
+
     await food.save();
     res.status(201).json(food);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}
+};
 
 //get all food items
 

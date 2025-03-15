@@ -1,0 +1,117 @@
+/* AddItems.css */
+.add-item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100vw - 18rem);
+    margin: 0 auto;
+    padding: 20px;
+   
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 20px;
+    width: 40%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .upload-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .file-upload-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:70%;
+    height: 100%; 
+    background-color: #f0f0f0;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    padding: 1rem;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .file-upload-label:hover {
+    background-color: #e0e0e0;
+    border-color: #007bff;
+  }
+  
+  .upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #555;
+  }
+  
+  .upload-placeholder span {
+    font-size: 14px;
+  }
+  
+  .image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .file-name {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+  }
+  
+  .add-product-name input,
+  .add-category-price select,
+  .add-category-price input,
+  .add-product-description textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .add-category-price {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .add-category-price > div {
+    flex: 1;
+  }
+  
+  .add-price input {
+    width: 100%;
+  }
+  
+  .add-product-description textarea {
+    resize: vertical;
+    height: 5rem;
+  }
+  
+  .add-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-button:hover {
+    background-color: #218838;
+  }

@@ -3,9 +3,3 @@
     height: fit-content;
   }
   
-  .main-content {
-    flex: 1;
-    padding: 20px;
-    background-color: #be1a1a;
-    overflow-y: auto; 
-  }
