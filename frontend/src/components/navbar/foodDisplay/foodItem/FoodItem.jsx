@@ -5,13 +5,14 @@ import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOut
 import { StoreContext } from '../../../../context/Context';
 
 function FoodItem({ image, name, price, description,id }) {
-const {cartItems,addToCart,removeFromCart} = useContext(StoreContext)
+const {cartItems,addToCart,removeFromCart,url} = useContext(StoreContext)
   return (
     <div className='food-item'>
       <div className="food-item-card">
         <div className="food-item-image-container">
-          <img className='food-item-image' src={image} alt={name} />
+          <img className='food-item-image' src={`${url}/uploads/${image}`} alt={name} />
           <div className="food-item-quantity-container">
+          
             {cartItems[id]> 0 ? (
               <div className='food-item-quantity'>
                 <RemoveCircleOutlineOutlinedIcon

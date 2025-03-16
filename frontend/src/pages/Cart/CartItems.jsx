@@ -7,8 +7,9 @@ import { StoreContext } from '../../context/Context';
 import { useNavigate } from 'react-router-dom';
 
 function CartItems() {
-  const { cartItems, foodList, removeFromCart, addToCart, getTotalCartAmount } = useContext(StoreContext);
+  const { cartItems, foodList, removeFromCart, addToCart, getTotalCartAmount,url} = useContext(StoreContext);
   const navigate = useNavigate();
+
 
   return (
     <div className="cart-container">
@@ -16,7 +17,7 @@ function CartItems() {
         <div className="empty-cart">
           <h2>Your cart is empty</h2>
           <p>Looks like you haven't added anything to your cart yet</p>
-        </div>
+        </div>  
       ) : (
         <>
           <div className="cartItems">
@@ -36,23 +37,23 @@ function CartItems() {
               </thead>
               <tbody>
                 {foodList.map((item) => {
-                  if (!cartItems[item.id]) {
+                  if (!cartItems[item._id]) {
                     return null;
                   } else {
-                    const total = cartItems[item.id] * item.price;
+                    const total = cartItems[item._id] * item.price;
                     return (
                       <tr key={item.id}>
                         <td>
-                          <img src={item.image} alt={item.name} className="cart-item-image" />
+                          <img src={`${url}/uploads/${item.image}`} alt={item.name} className="cart-item-image" />
                         </td>
                         <td>{item.name}</td>
                         <td>R{item.price}</td>
-                        <td>{cartItems[item.id]}</td>
+                        <td>{cartItems[item._id]}</td>
                         <td>R{total}</td>
                         <td>
                           <div className="button-container">
-                            <DeleteOutlinedIcon onClick={() => removeFromCart(item.id)} className='cart-btn' />
-                            <AddCircleOutlineOutlinedIcon onClick={() => addToCart(item.id)} className='cart-btn' />
+                            <DeleteOutlinedIcon onClick={() => removeFromCart(item._id)} className='cart-btn' />
+                            <AddCircleOutlineOutlinedIcon onClick={() => addToCart(item._id)} className='cart-btn' />
                           </div>
                         </td>
                       </tr>

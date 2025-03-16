@@ -55,3 +55,38 @@
     color: #fff;
     border-bottom: 1px solid #fff;
 }
+
+.navbar-profile{
+    position: relative;
+}
+
+.navbar-profile-dropdown{
+position: absolute;
+display: none;
+right: 0;
+z-index: 1;
+
+}
+
+.navbar-profile:hover .navbar-profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #343a40;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    outline: 2px solid #343a40;
+    list-style: none;
+}
+.navbar-profile-dropdown li{
+    display: flex;
+    align-items: center;
+    gap:0.5rem
+}
+
+.navbar-profile-dropdown li:hover{
+    color: black;
+    background-color: transparent;
+}
+

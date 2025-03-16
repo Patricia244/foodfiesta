@@ -5,6 +5,7 @@ import { StoreContext } from '../../../context/Context'
 import FoodItem from './foodItem/FoodItem'
 function FoodDisplay({category}) {
     const {foodList} = useContext(StoreContext)
+    console.log(foodList)
   return (
     <div className='food-display' id='food-display'>
       <h2>Top Food</h2>
@@ -12,14 +13,15 @@ function FoodDisplay({category}) {
         {foodList.map((item,index)=>{
           if(category === 'all' || item.category === category)
           {
+  
             return(<FoodItem
-              key={index} image={item.image} id={item.id} 
+              key={index} image={item.image} id={item._id} 
               name ={item.name} 
               description={item.description}
               price ={item.price} 
               category={item.category}/>)
           }
-            
+          return null;
         })}
       </div>
     </div>
