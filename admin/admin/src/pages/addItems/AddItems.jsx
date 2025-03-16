@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './AddItems.css';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
-function AddItems() {
-  const url = "http://localhost:4000/api/food"; // Corrected URL
+
+function AddItems({url}) {
   const [image, setImage] = useState('No file chosen');
   const [previewImage, setPreviewImage] = useState(null);
   const [data, setData] = useState({
@@ -12,11 +13,12 @@ function AddItems() {
     price: "",
     category: "Salad",
   });
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setImage(file.name); // Set the filename for display
-      setPreviewImage(URL.createObjectURL(file)); // Set the preview image
+      setImage(file.name); 
+      setPreviewImage(URL.createObjectURL(file)); 
     } else {
       setImage('No file chosen');
       setPreviewImage(null);
@@ -30,7 +32,7 @@ function AddItems() {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    const fileInput = document.getElementById('image'); // Get the file input element
+    const fileInput = document.getElementById('image');
     const file = fileInput.files[0]; 
 
     const formData = new FormData();
@@ -42,7 +44,7 @@ function AddItems() {
 
     try {
 
-      const response = await axios.post(`http://localhost:4000/api/food/addItem`, formData)
+      const response = await axios.post(`${url}/addItem`, formData)
 
       if (response.status === 201) {
         setData({
@@ -53,13 +55,12 @@ function AddItems() {
         });
         setImage('No file chosen');
         setPreviewImage(null);
-        alert("Item added successfully!");
+        toast.success(response.data.message)
       } else {
-        alert("Failed to add item. Please try again.");
+        toast.error(response.data.message)
       }
     } catch (error) {
-      console.error("Error submitting form:", error.message);
-      alert("An error occurred. Please check your network connection and try again.",error.message);
+     toast.error(error.message)
     }
   };
 

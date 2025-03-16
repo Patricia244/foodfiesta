@@ -41,21 +41,30 @@ export const deleteFoodItem = async (req, res) => {
   try {
     const food = await foodModel.findById(req.query.id);
     if (food) {
-    
-        fs.unlink(`uploads/${food.image}`, async (err) => {
-          if (err) {
-            res.status(500).json({ error: err.message });
-          } else {
-            await foodModel.findOneAndDelete({ _id: req.params.id });
-            res.json({ message: "Food item removed" });
-          }
-        });
+      const filePath = `uploads/${food.image}`;
 
-      
+      // Check if the file exists before attempting to delete it
+      fs.access(filePath, fs.constants.F_OK, async (err) => {
+        if (err) {
+          console.log(`File does not exist: ${filePath}`);
+        } else {
+          // File exists, so delete it
+          fs.unlink(filePath, (err) => {
+            if (err) {
+              console.log(`Error deleting file: ${err.message}`);
+              return res.status(500).json({ success: false, error: err.message });
+            }
+          });
+        }
+
+        // Delete the item from the database
+        await foodModel.findOneAndDelete({ _id: req.query.id });
+        res.json({ success: true, message: "Food item removed" });
+      });
     } else {
-      res.status(404).json({ message: "Food item not found" });
+      res.status(404).json({ success: false, message: "Food item not found" });
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ success: false, error: error.message });
   }
-}
+};
