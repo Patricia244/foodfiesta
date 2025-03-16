@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import CartItems from './pages/Cart/CartItems';
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import Login from './components/login/Login';
+import Verify from './pages/verify/Verify'
 import { useState } from 'react';
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
       <div className="App">
         <Navbar className="navbar" setShowLogin={setShowLogin} />
         <Routes>
-          <Route path="/" element={<Home />} /> {/* Home page */}
-          <Route path="/cart" element={<CartItems />} /> {/* Cart page */}
-          <Route path="/order" element={<PlaceOrder />} /> {/* Place Order page */}
+          <Route path="/" element={<Home />} /> 
+          <Route path="/cart" element={<CartItems />} /> 
+          <Route path="/order" element={<PlaceOrder />} />
+          <Route path="/verify" element={<Verify />} /> 
         </Routes>
         <footer className="footer">
           <p>&copy; 2023 FoodFiesta. All rights reserved.</p>
