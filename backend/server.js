@@ -4,6 +4,7 @@ import { connectDB } from "./config/db.js"
 import foodRoute from "./routes/foodRoute.js"
 import userRouter from "./routes/userRoute.js"
 import 'dotenv/config'
+import cartRouter from "./routes/cartRoute.js"
 
 const app = express()
 
@@ -19,6 +20,7 @@ connectDB()
 app.use("/api/food", foodRoute)
 app.use("/uploads", express.static("uploads"))
 app.use("/api/user",userRouter)
+app.use('/api/cart',cartRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port  http://localhost:${port}`)
