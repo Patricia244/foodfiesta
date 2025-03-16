@@ -2,6 +2,7 @@ import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 import jwt from 'jsonwebtoken'
+import { response } from "express";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -85,4 +86,14 @@ export const verifyOrder = async(req,res )=>{
     console.error("Error placing order:", error);
     res.status(500).json({ success: false, message: error.message });
   }
+}
+
+export const userOrders = async (req,res)=>{
+try {
+    const orders = await orderModel.find({userId:req.body.userId})
+    res.status(200).json({ success: true, order: orders});
+} catch (error) {
+  console.error("Error placing order:", error);
+  res.status(500).json({ success: false, message: error.message });
+}
 }
