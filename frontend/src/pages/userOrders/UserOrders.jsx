@@ -47,7 +47,7 @@ function UserOrders() {
               <p> R {order.amount}</p>
               <p>Items:{order.items.length}</p>
               <p> {order.status}</p>
-              <button className='order-button'>Track order</button>
+              <button className='order-button' onClick={getUserOrders}>Track order</button>
             </li>
           ))}
         </ul>

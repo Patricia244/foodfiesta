@@ -5,7 +5,6 @@ import { StoreContext } from '../../../context/Context'
 import FoodItem from './foodItem/FoodItem'
 function FoodDisplay({category}) {
     const {foodList} = useContext(StoreContext)
-    console.log(foodList)
   return (
     <div className='food-display' id='food-display'>
       <h2>Top Food</h2>

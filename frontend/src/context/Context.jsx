@@ -57,7 +57,11 @@ const getTotalCartAmount = ()=>{
 }
 
 const fetchFoodList = async()=>{
-    const response = await axios.get(`${url}/api/food/listItems`)
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: token,
+      };
+    const response = await axios.get(`${url}/api/food/listItems`,headers)
     setFoodList(response.data)
 
 }
