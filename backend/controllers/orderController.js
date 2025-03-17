@@ -98,3 +98,13 @@ try {
   res.status(500).json({ success: false, message: error.message });
 }
 }
+export const listOrder = async(req,res)=>{
+try {
+  const orders = await orderModel.find({})
+  res.status(200).json({ success: true, order: orders});
+} catch (error) {
+  console.log("Error placing order:", error);
+  res.status(500).json({ success: false, message: error.message });
+  
+}
+}

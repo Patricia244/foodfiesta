@@ -8,7 +8,6 @@ import { CircleLoader } from 'react-spinners';
 function UserOrders() {
   const [data, setData] = useState([]);
   const { url, token } = useContext(StoreContext);
-  const [errorMessage, setErrorMessage] = useState('')
 
   const getUserOrders = async () => {
     try {

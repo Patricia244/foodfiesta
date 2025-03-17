@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/Context';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function PlaceOrder() {
   const { getTotalCartAmount, foodList, cartItems, url, token } = useContext(StoreContext);
@@ -15,6 +16,7 @@ function PlaceOrder() {
     province: '',
     postalCode: '',
   });
+  const navigate = useNavigate("")
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -23,8 +25,6 @@ function PlaceOrder() {
 
   const placeOrder = async (event) => {
     event.preventDefault();
-
-    // Prepare order items
     let orderItems = [];
     foodList.forEach((item) => {
       if (cartItems[item._id]) {
@@ -33,8 +33,6 @@ function PlaceOrder() {
         orderItems.push(itemInfo);
       }
     });
-
-    // Prepare order data
     let orderData = {
       address: data,
       items: orderItems,
@@ -42,29 +40,26 @@ function PlaceOrder() {
     };
 
     try {
-      // Send the order data to the backend
       const response = await axios.post(`${url}/api/order/placeOrder`, orderData, {
         headers: { token },
       });
 
       if (response.data.success) {
         const { sessionUrl } = response.data;
-        window.location.replace(sessionUrl); // Redirect to Stripe Checkout
+        window.location.replace(sessionUrl);
       } else {
         alert("Error placing order: " + response.data.message);
       }
     } catch (error) {
       console.error("Error placing order:", error);
       if (error.response) {
-        // Backend returned an error response
         alert("Error: " + error.response.data.message);
       } else {
-        // Network or other errors
         alert("An error occurred. Please try again.");
       }
     }
   };
-
+  
   return (
     <form className="place-order-form" onSubmit={placeOrder}>
       <div className="place-order-left">
