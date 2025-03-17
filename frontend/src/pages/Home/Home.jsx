@@ -8,7 +8,7 @@ function Home() {
 
   return (
     <div>
-      <header className="header" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      {/* <header className="header" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="header-content">
           <h1>Welcome to Food Fiesta!</h1>
           <p>Your one-stop shop for delicious food.</p>
@@ -20,7 +20,7 @@ function Home() {
           <ExploreMenu category ={category} setCategory ={setCategory}/>
           <FoodDisplay category={category}/>
         </section>
-      </main>
+      </main> */}
     </div>
   )
 }

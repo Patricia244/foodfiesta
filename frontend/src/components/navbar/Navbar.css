@@ -1,92 +1,183 @@
-.navbar{
+.navbar {
+    background-color: #ffffff;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color:  rgba(0, 0, 0, 0.89);;
-    padding: 10px 20px;
-    border-bottom: 1px solid #e9ecef;
-}
-
-.navbar-logo{
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #343a40;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #39304a;
+    margin: 0;
+    text-decoration: none;
+  }
+  
+  .mobile-menu-icon {
+    display: none; 
     cursor: pointer;
-    color: #fff;
-}
-
-.navbar-menu{
+    color: #39304a;
+  }
+  
+  .navbar-menu {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 50%;
-    color: #fff;
-}
-
-.navbar-menu-list{
+    gap: 40px;
+  }
+  
+  .navbar-menu-list {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     list-style: none;
-    width: 30%;
-}
-
-.navbar-menu-list li{
+    margin: 0;
+    padding: 0;
+    gap: 40px;
+  }
+  
+  .navbar-menu-list li {
+    font-size: 16px;
+    color: #39304a;
     cursor: pointer;
-}
-
-.navbar-buttons{
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-menu-list li:hover {
+    color: #6c5b7b;
+  }
+  
+  .navbar-menu-list .active {
+    color: #6c5b7b;
+    font-weight: bold;
+  }
+  
+  .navbar-buttons {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 60%;
+    gap: 20px;
+  }
+  
+  .secondary-button {
+    background-color: #39304a;
+    color: #ffffff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-}
-
-.navbar-buttons button{
-    color: #fff;
-    border: 1px solid #fff;
-    padding: 5px 10px;
-    border-radius: 1rem;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .secondary-button:hover {
+    background-color: #6c5b7b;
+  }
+  
+  .cart-icon {
+    color: #39304a;
     cursor: pointer;
-}
-
-.navbar-menu-list .active{
-    color: #fff;
-    border-bottom: 1px solid #fff;
-}
-
-.navbar-profile{
+    transition: color 0.3s ease;
+  }
+  
+  .cart-icon:hover {
+    color: #6c5b7b;
+  }
+  
+  .navbar-profile {
     position: relative;
-}
-
-.navbar-profile-dropdown{
-position: absolute;
-display: none;
-right: 0;
-z-index: 1;
-
-}
-
-.navbar-profile:hover .navbar-profile-dropdown{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background-color: #343a40;
-    padding: 12px 25px;
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
-    outline: 2px solid #343a40;
+    cursor: pointer;
+  }
+  
+  .profile-icon {
+    color: #39304a;
+    transition: color 0.3s ease;
+  }
+  
+  .profile-icon:hover {
+    color: #6c5b7b;
+  }
+  
+  .navbar-profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     list-style: none;
-}
-.navbar-profile-dropdown li{
+    padding: 10px;
+    margin: 0;
+    display: none;
+    min-width: 150px;
+  }
+  
+  .navbar-profile:hover .navbar-profile-dropdown {
+    display: block;
+  }
+  
+  .navbar-profile-dropdown li {
+    padding: 8px;
+    font-size: 14px;
+    color: #39304a;
     display: flex;
     align-items: center;
-    gap:0.5rem
-}
+    gap: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-profile-dropdown li:hover {
+    background-color: #f5f5f5;
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .mobile-menu-icon {
+      display: block; 
+    }
+  
+    .navbar-menu {
+      display: none; 
+      flex-direction: column;
+      width: 100%;
+      background-color: #ffffff;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    .navbar-menu.active {
+      display: flex; 
+      align-items: flex-start;
 
-.navbar-profile-dropdown li:hover{
-    color: black;
-    background-color: transparent;
-}
+    }
+  
+    .navbar-menu-list {
+      flex-direction: column;
+      padding:0 35px;
+      gap: 20px;
+      width: 100%;
+    }
 
+    .navbar-menu-list li:hover {
+     background-color: #cac0d3;
+      }
+  
+    .navbar-buttons {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        padding:0 38px
+    }
+  
+    .navbar-profile-dropdown {
+      left: 20%;
+    }
+    .navbar-menu {
+        gap: 20px;
+      }
+  }
