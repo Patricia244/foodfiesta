@@ -92,8 +92,9 @@ export const userOrders = async (req,res)=>{
 try {
     const orders = await orderModel.find({userId:req.body.userId})
     res.status(200).json({ success: true, order: orders});
+    console.log(orders)
 } catch (error) {
-  console.error("Error placing order:", error);
+  console.log("Error placing order:", error);
   res.status(500).json({ success: false, message: error.message });
 }
 }

@@ -7,6 +7,7 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import Login from './components/login/Login';
 import Verify from './pages/verify/Verify'
 import { useState } from 'react';
+import UserOrders from './pages/userOrders/UserOrders';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -21,6 +22,7 @@ function App() {
           <Route path="/cart" element={<CartItems />} /> 
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} /> 
+          <Route path="/MyOrders" element={<UserOrders />} />
         </Routes>
         <footer className="footer">
           <p>&copy; 2023 FoodFiesta. All rights reserved.</p>

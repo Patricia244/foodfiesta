@@ -52,7 +52,10 @@ return (
           <AccountCircleOutlinedIcon/>
           <ul className='navbar-profile-dropdown'>
             <li>
-            <ShoppingBagOutlinedIcon/> Orders
+              <Link to='/myOrders'>
+              <ShoppingBagOutlinedIcon/> Orders
+              </Link>
+            
             
             </li>
             <li onClick={logout}>

@@ -1,0 +1,73 @@
+.user-orders {
+padding: 1rem
+  }
+
+  .user-orders h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .user-orders ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .user-orders ul li {
+    border: 1px solid #555;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .user-orders ul li img {
+    width:4rem;
+    height: 4rem;
+  }
+  
+  .user-orders ul li p {
+    color: #555;
+  }
+  
+  .user-orders ul li p:first-child {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .user-orders .error {
+    text-align: center;
+    font-size: 18px;
+    color: #ff4d4f;
+    margin-top: 20px;
+  }
+  
+  .order-button{
+    padding: 1rem;
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+    border-radius: 0.5rem;
+  }
+  .order-button:hover{
+    padding: 1rem;
+    background-color: black;
+    outline: #333;
+    color: white;
+  }
+ .loader{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+  @media (max-width: 768px) {
+    .user-orders ul li {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
