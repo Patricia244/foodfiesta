@@ -9,6 +9,7 @@ import Divider from '@mui/material/Divider';
 function Sidebar() {
   return (
     <div className="sidebar-container">
+      <h1 className="logo">Food Fiesta</h1> 
       <Divider />
       <div className="Sidebar">
         <div className="sidebarWrapper">

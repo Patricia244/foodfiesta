@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './AddItems.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
+import uploadIcon from '../../assets/upload-icon-25.png'
 
 function AddItems({url}) {
   const [image, setImage] = useState('No file chosen');
@@ -86,8 +86,9 @@ function AddItems({url}) {
               <img src={previewImage} alt="Preview" className="image-preview" />
             ) : (
               <div className="upload-placeholder">
-                <span>Click to upload or drag and drop</span>
-                <span>PNG, JPG, or JPEG (Max 5MB)</span>
+                <img src={uploadIcon} alt="" />
+                <span>Browse files</span>
+                <span>Drag and drop</span>
               </div>
             )}
             <input
@@ -138,7 +139,7 @@ function AddItems({url}) {
           ></textarea>
         </div>
 
-        <button type='submit' className='add-button'>Add</button>
+        <button type='submit' className='primary-button'>Add</button>
       </form>
     </div>
   );

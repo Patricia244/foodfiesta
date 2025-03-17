@@ -3,6 +3,7 @@ import './Orders.css'; // Import the CSS file
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import ordersImage from '../../assets/orders.png';
+import { CircleLoader } from 'react-spinners';
 
 function Orders({ url }) {
   const [orders, setOrders] = useState([]);
@@ -39,7 +40,7 @@ function Orders({ url }) {
   return (
     <div className="user-orders">
       <h2>Orders</h2>
-      <div className="order-list">
+      {orders.length > 0? (<div className="order-list">
         {orders.map((order, index) => (
           <div className="order-item" key={index}>
             <img src={ordersImage} alt="orders" />
@@ -69,7 +70,13 @@ function Orders({ url }) {
             </select>
           </div>
         ))}
+      </div>):(
+          <div className="spinner">
+          <CircleLoader color="#2a2438" size={50} />
       </div>
+
+      )}
+      
     </div>
   );
 }

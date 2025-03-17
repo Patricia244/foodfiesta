@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './List.css'; // Import the CSS file
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { CircleLoader } from 'react-spinners';
 
 function List({url}) {
   const [list, setList] = useState([]);
@@ -36,8 +38,8 @@ function List({url}) {
 
   return (
     <div className='list add flex-col'>
-      <p>All food list</p>
-      <div className="list-table">
+      <h1>Food list</h1>
+      {Array.isArray(list) && list.length > 0 ? ( <div className="list-table">
         <table>
           <thead>
             <tr>
@@ -59,8 +61,7 @@ function List({url}) {
                   <td>{item.category}</td>
                   <td>R{item.price}</td>
                   <td>
-                    <button className="edit-btn">Edit</button>
-                    <button className="delete-btn" onClick={() => removeItem(item._id)}>Delete</button>
+                    < CancelOutlinedIcon onClick={() => removeItem(item._id)}/>
                   </td>
                 </tr>
               ))
@@ -71,7 +72,13 @@ function List({url}) {
             )}
           </tbody>
         </table>
+        
       </div>
+      ) : (
+        <div className="spinner">
+            <CircleLoader color="#2a2438" size={50} />
+        </div>
+      )}
     </div>
   );
 }
