@@ -9,6 +9,9 @@
   z-index: 1000;
 }
 
+.sidebar-container .logo{
+  padding: 0 20px
+}
 .sidebarWrapper {
   padding: 20px;
 }
