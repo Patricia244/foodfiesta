@@ -7,9 +7,8 @@ import { StoreContext } from '../../context/Context';
 import { useNavigate } from 'react-router-dom';
 
 function CartItems() {
-  const { cartItems, foodList, removeFromCart, addToCart, getTotalCartAmount,url} = useContext(StoreContext);
+  const { cartItems, foodList, removeFromCart, addToCart, getTotalCartAmount, url } = useContext(StoreContext);
   const navigate = useNavigate();
-
 
   return (
     <div className="cart-container">
@@ -17,12 +16,12 @@ function CartItems() {
         <div className="empty-cart">
           <h2>Your cart is empty</h2>
           <p>Looks like you haven't added anything to your cart yet</p>
-        </div>  
+        </div>
       ) : (
         <>
           <div className="cartItems">
             <div className="cartItems-title">
-              <h2>Your Cart</h2>
+              <h2>My Cart</h2>
             </div>
             <table className="cart-table">
               <thead>
@@ -36,13 +35,13 @@ function CartItems() {
                 </tr>
               </thead>
               <tbody>
-                {foodList.map((item) => {
+                {foodList.map((item,index) => {
                   if (!cartItems[item._id]) {
                     return null;
                   } else {
                     const total = cartItems[item._id] * item.price;
                     return (
-                      <tr key={item.id}>
+                      <tr key={index}>
                         <td>
                           <img src={`${url}/uploads/${item.image}`} alt={item.name} className="cart-item-image" />
                         </td>
@@ -82,16 +81,6 @@ function CartItems() {
                 </div>
               </div>
               <button className="checkout-btn" onClick={() => navigate('/order')}>Checkout</button>
-            </div>
-            <div className="cart-promo-container">
-              <div>
-                <h3>Have a promo code?</h3>
-                <div className='promo-input'>
-                  <label>Enter your code here</label>
-                  <input type="text" placeholder="Enter promo code" />
-                  <button>Apply</button>
-                </div>
-              </div>
             </div>
           </div>
         </>

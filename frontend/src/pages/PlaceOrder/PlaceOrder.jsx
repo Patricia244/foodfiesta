@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/Context';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 function PlaceOrder() {
   const { getTotalCartAmount, foodList, cartItems, url, token } = useContext(StoreContext);
@@ -16,7 +15,6 @@ function PlaceOrder() {
     province: '',
     postalCode: '',
   });
-  const navigate = useNavigate("")
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -59,7 +57,7 @@ function PlaceOrder() {
       }
     }
   };
-  
+
   return (
     <form className="place-order-form" onSubmit={placeOrder}>
       <div className="place-order-left">
@@ -145,7 +143,7 @@ function PlaceOrder() {
           />
         </div>
       </div>
-      <div className="place-oder-right">
+      <div className="place-order-right">
         <div className="cart-total">
           <div>
             <div className="cart-total-details">
