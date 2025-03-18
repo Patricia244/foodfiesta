@@ -1,18 +1,29 @@
-.exploreMenu{
+.exploreMenu {
     display: flex;
     flex-direction: column;
-}
-
-.exploreMenu-list{
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .exploreMenu-heading {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #39304a;
+  }
+  
+  .exploreMenu-list {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 0;
     list-style: none;
-}
-.exploreMenu-item{
+  }
+  
+  .exploreMenu-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,23 +31,88 @@
     padding: 1rem;
     gap: 1rem;
     cursor: pointer;
-    border-radius: 50%;
-}
-.exploreMenu-item :hover{
-    transform: scale(1.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .exploreMenu-item:hover {
+    transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.exploreMenu-list img{
+  }
+  
+  .exploreMenu-list img {
     width: 8rem;
     height: 8rem;
     border-radius: 50%;
     cursor: pointer;
-    animation: forwards 3s ease-in-out infinite;
+  }
+  
+  .exploreMenu-list .active {
+    border: 3px solid #39304a;
+  }
+  
+  .exploreMenu-item-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .exploreMenu-item-desc {
+    font-size: 1rem;
+    color: #555;
+    text-align: center;
+  }
 
-}
-
-.exploreMenu-list .active{
-    border: 3px solid black;
-    padding: 0.5rem;
-}
+  @media (max-width: 768px) {
+    .exploreMenu-heading {
+      font-size: 1.5rem;
+    }
+  
+    .exploreMenu-list {
+      gap: 15px;
+    }
+  
+    .exploreMenu-item {
+      padding: 0.5rem;
+    }
+  
+    .exploreMenu-list img {
+      width: 6rem;
+      height: 6rem;
+    }
+  
+    .exploreMenu-item-heading {
+      font-size: 1rem;
+    }
+  
+    .exploreMenu-item-desc {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .exploreMenu-heading {
+      font-size: 1.2rem;
+    }
+  
+    .exploreMenu-list {
+      gap: 10px;
+    }
+  
+    .exploreMenu-item {
+      padding: 0.5rem;
+    }
+  
+    .exploreMenu-list img {
+      width: 5rem;
+      height: 5rem;
+    }
+  
+    .exploreMenu-item-heading {
+      font-size: 0.9rem;
+    }
+  
+    .exploreMenu-item-desc {
+      font-size: 0.8rem;
+    }
+  }
