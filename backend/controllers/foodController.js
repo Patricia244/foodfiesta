@@ -1,8 +1,6 @@
 import foodModel from "../models/foodModel.js"
 import fs from "fs";
 
-//add food item
-
 export const addFoodItem = async (req, res) => {
   try {
     const { name, description, price, category } = req.body;
@@ -42,13 +40,10 @@ export const deleteFoodItem = async (req, res) => {
     const food = await foodModel.findById(req.query.id);
     if (food) {
       const filePath = `uploads/${food.image}`;
-
-      // Check if the file exists before attempting to delete it
       fs.access(filePath, fs.constants.F_OK, async (err) => {
         if (err) {
           console.log(`File does not exist: ${filePath}`);
         } else {
-          // File exists, so delete it
           fs.unlink(filePath, (err) => {
             if (err) {
               console.log(`Error deleting file: ${err.message}`);
