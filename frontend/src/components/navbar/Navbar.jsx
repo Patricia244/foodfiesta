@@ -27,6 +27,12 @@ function Navbar({ setShowLogin }) {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const scrollToFeaturedProducts = () => {
+    const featuredProductsSection = document.getElementById('featured-products');
+    if (featuredProductsSection) {
+      featuredProductsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <div className='navbar'>
       <Link to='/'>
@@ -40,8 +46,8 @@ function Navbar({ setShowLogin }) {
           <Link to='/'>
             <li onClick={() => setMenu("Home")} className={menu === "Home" ? "active" : ""}>Home</li>
           </Link>
-          <Link to='/menu'>
-            <li onClick={() => setMenu("Menu")} className={menu === "Menu" ? "active" : ""}>Menu</li>
+          <Link>
+            <li onClick={() => { setMenu("Menu"); scrollToFeaturedProducts(); }} className={menu === "Menu" ? "active" : ""}>Menu</li>
           </Link>
           <Link to='/cart'>
             <li>
@@ -51,7 +57,6 @@ function Navbar({ setShowLogin }) {
             </li>
           </Link>
         </ul>
-
         <div className='navbar-buttons'>
           {!token ? (
             <button className='secondary-button' onClick={() => setShowLogin(true)}>Sign in</button>
