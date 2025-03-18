@@ -44,7 +44,7 @@ function AddItems({url}) {
 
     try {
 
-      const response = await axios.post(`${url}/addItem`, formData)
+      const response = await axios.post(`${url}/api/food/addItem`, formData)
 
       if (response.status === 201) {
         setData({

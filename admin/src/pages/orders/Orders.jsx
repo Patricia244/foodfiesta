@@ -10,20 +10,21 @@ function Orders({ url }) {
 
   const getOrders = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/order/listOrders`);
+      const response = await axios.get(`${url}/api/order/listOrders`);
       if (response.data.success) {
         setOrders(response.data.order);
       } else {
         toast.error('Error fetching orders');
       }
     } catch (error) {
+      console.log(error)
       toast.error(`Error: ${error.message}`);
     }
   };
 
   const updateOrderStatus = async(event,orderId)=>{
     try {
-      const response = await axios.post('http://localhost:4000/api/order/status',{orderId,status:event.target.value})
+      const response = await axios.post(`${url}/api/order/status`,{orderId,status:event.target.value})
       if(response.data.success){
         await getOrders()
       }

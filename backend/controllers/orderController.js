@@ -11,7 +11,7 @@ export const placeOrder = async (req, res) => {
     const { items, amount, address } = req.body;
     const token = req.headers.token;
     if (!token) {
-      return res.status(401).json({ success: false, message: "Token is required" });
+      return res.status(401).json({ success: false, message: "Token is required" })
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);

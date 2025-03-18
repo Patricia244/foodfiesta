@@ -8,7 +8,7 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
-  const url = 'http://localhost:4000/api/food'
+  const url = process.env.REACT_APP_BACKEND_URL;
   return (
     <div>
       <div className="content-container">

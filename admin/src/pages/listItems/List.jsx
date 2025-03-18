@@ -10,7 +10,7 @@ function List({url}) {
 
   const fetchList = async () => {
     try {
-      const response = await axios.get(`${url}/listItems`);
+      const response = await axios.get(`${url}/api/food/listItems`);
       if (response.status === 200) {
         setList(response.data || []); 
       }
@@ -21,7 +21,7 @@ function List({url}) {
 
   const removeItem = async (id) => {
     try {
-      const response = await axios.post(`${url}/deleteItem?id=${id}`);
+      const response = await axios.post(`${url}/api/food/deleteItem?id=${id}`);
       if (response.data.success) {
         toast.success(response.data.message);
         await fetchList(); 
@@ -55,7 +55,7 @@ function List({url}) {
               list.map((item) => (
                 <tr key={item._id}>
                   <td>
-                    <img src={`http://localhost:4000/uploads/${item.image}`} alt={item.name} className="food-image" />
+                    <img src={`${url}/uploads/${item.image}`} alt={item.name} className="food-image" />
                   </td>
                   <td>{item.name}</td>
                   <td>{item.category}</td>

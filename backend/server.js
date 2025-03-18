@@ -8,7 +8,10 @@ import cartRouter from "./routes/cartRoute.js"
 import orderRoute from "./routes/orderRoute.js"
 
 const app = express()
-app.use(cors({origin: true, credentials: true}));
+app.use(cors({
+    origin: process.env.FRONTEND_URL, 
+    credentials: true, 
+  }))
 app.use(express.json())
 const port = 4000
 
