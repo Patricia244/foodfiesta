@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import './UserOrders.css';
 import { StoreContext } from '../../context/Context';
 import axios from 'axios';
-import orders from '../../assets/images/orders.png'
-import { CircleLoader } from 'react-spinners'; 
+import orders from '../../assets/images/orders.png';
+import { CircleLoader } from 'react-spinners';
 
 function UserOrders() {
   const [data, setData] = useState([]);
@@ -15,9 +15,9 @@ function UserOrders() {
         `${url}/api/order/userOrders`,
         {},
         {
-          headers:{token },
+          headers: { token },
         }
-      )
+      );
       setData(response.data.order);
     } catch (error) {
       console.error('Error fetching user orders:', error);
@@ -27,12 +27,11 @@ function UserOrders() {
   useEffect(() => {
     if (token) {
       getUserOrders();
-    } 
+    }
   }, [token]);
- 
+
   return (
     <div className="user-orders">
-      
       <h2>My Orders</h2>
       {data.length > 0 ? (
         <ul>
@@ -41,20 +40,20 @@ function UserOrders() {
               <img src={orders} alt="orders" />
               <p>
                 {order.items
-                  .map((item) => `${item.name} x  ${item.quantity}`)
+                  .map((item) => `${item.name} x ${item.quantity}`)
                   .join(', ')}
               </p>
-              <p> R {order.amount}</p>
-              <p>Items:{order.items.length}</p>
-              <p> {order.status}</p>
+              <p>R {order.amount}</p>
+              <p>Items: {order.items.length}</p>
+              <p>{order.status}</p>
               <button className='order-button' onClick={getUserOrders}>Track order</button>
             </li>
           ))}
         </ul>
       ) : (
-       <div className="loader">
-        <CircleLoader />
-       </div>
+        <div className="loader">
+          <CircleLoader color="#39304a" />
+        </div>
       )}
     </div>
   );
