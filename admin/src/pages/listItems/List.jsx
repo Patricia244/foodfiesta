@@ -7,15 +7,18 @@ import { CircleLoader } from 'react-spinners';
 
 function List({url}) {
   const [list, setList] = useState([]);
+  const [loading,setLoading] = useState(true)
 
   const fetchList = async () => {
     try {
       const response = await axios.get(`${url}/api/food/listItems`);
       if (response.status === 200) {
         setList(response.data || []); 
+        setLoading(false)
       }
     } catch (error) {
       toast.error(error.message);
+      setLoading(false)
     }
   };
 
@@ -39,7 +42,7 @@ function List({url}) {
   return (
     <div className='list add flex-col'>
       <h1>Food list</h1>
-      {Array.isArray(list) && list.length > 0 ? ( <div className="list-table">
+      {!loading ? ( <div className="list-table">
         <table>
           <thead>
             <tr>
@@ -61,7 +64,7 @@ function List({url}) {
                   <td>{item.category}</td>
                   <td>R{item.price}</td>
                   <td>
-                    < CancelOutlinedIcon onClick={() => removeItem(item._id)}/>
+                    <CancelOutlinedIcon className='remove-item' onClick={() => removeItem(item._id)} />
                   </td>
                 </tr>
               ))

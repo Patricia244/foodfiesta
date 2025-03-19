@@ -10,7 +10,8 @@
 }
 
 .sidebar-container .logo{
-  padding: 0 20px
+  padding: 0 20px;
+  cursor: pointer;
 }
 .sidebarWrapper {
   padding: 20px;

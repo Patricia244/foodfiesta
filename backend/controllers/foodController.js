@@ -5,7 +5,7 @@ export const addFoodItem = async (req, res) => {
   try {
     const { name, description, price, category } = req.body;
     const image = req.file;
-    console.log(image)
+ 
     if (!image) {
       return res.status(400).json({ error: "Image is required" });
     }

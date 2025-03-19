@@ -1,15 +1,16 @@
 import React from 'react';
 import './Sidebar.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Divider from '@mui/material/Divider';
 
 function Sidebar() {
+  const navigate = useNavigate()
   return (
     <div className="sidebar-container">
-      <h1 className="logo">Food Fiesta</h1> 
+      <h1 className="logo" onClick={navigate('/')}>Food Fiesta</h1> 
       <Divider />
       <div className="Sidebar">
         <div className="sidebarWrapper">

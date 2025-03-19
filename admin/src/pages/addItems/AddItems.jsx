@@ -4,8 +4,6 @@ import './AddItems.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import uploadIcon from '../../assets/upload-icon-25.png';
-import { CircleLoader } from 'react-spinners';
-import { debounce } from "lodash"
 
 function AddItems({ url }) {
   const [image, setImage] = useState('No file chosen');
@@ -40,17 +38,15 @@ function AddItems({ url }) {
     return data.name && data.description && data.price && image !== 'No file chosen';
   };
 
-  const onSubmitHandler = debounce(async (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
-    if (!isFormValid() || loading) return; // Prevent multiple submissions
-
-    if (loading) return; // Prevent multiple clicks
+    if (!isFormValid() || loading) return; 
     setLoading(true);
-    const file = event.target.image.files[0]; // Use React event handling
+    const file = event.target.image.files[0]; 
 
     const formData = new FormData();
     formData.append('name', data.name);
-    formData.append('price', Number(data.price) || 0); // Ensure valid number
+    formData.append('price', Number(data.price) || 0); 
     formData.append('description', data.description);
     formData.append('category', data.category);
     formData.append('image', file);
@@ -76,7 +72,7 @@ function AddItems({ url }) {
     } finally {
       setLoading(false);
     }
-  },1000);
+  };
 
   return (
     <div className='add-item-container'>
@@ -157,8 +153,6 @@ function AddItems({ url }) {
         <button type='submit' className='primary-button' disabled={!isFormValid() || loading}>
           {loading ? 'Adding...' : 'Add'}
         </button>
-
-        {loading && <CircleLoader />}
       </form>
     </div>
   );
