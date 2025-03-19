@@ -5,6 +5,7 @@ export const addFoodItem = async (req, res) => {
   try {
     const { name, description, price, category } = req.body;
     const image = req.file;
+    console.log(image)
     if (!image) {
       return res.status(400).json({ error: "Image is required" });
     }
@@ -15,9 +16,8 @@ export const addFoodItem = async (req, res) => {
       image: image.filename, 
       category,
     });
-
     await food.save();
-    res.status(201).json(food);
+    return res.status(200).json({success:true, message: "food added"});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

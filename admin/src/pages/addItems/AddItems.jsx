@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AddItems.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import uploadIcon from '../../assets/upload-icon-25.png'
+import uploadIcon from '../../assets/upload-icon-25.png';
+import { CircleLoader } from 'react-spinners';
+import { debounce } from "lodash"
 
-function AddItems({url}) {
+function AddItems({ url }) {
   const [image, setImage] = useState('No file chosen');
   const [previewImage, setPreviewImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    category: "Salad",
+    name: '',
+    description: '',
+    price: '',
+    category: 'Salad',
   });
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setImage(file.name); 
-      setPreviewImage(URL.createObjectURL(file)); 
+      setImage(file.name);
+      setPreviewImage(URL.createObjectURL(file));
     } else {
       setImage('No file chosen');
       setPreviewImage(null);
@@ -30,39 +36,47 @@ function AddItems({url}) {
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const onSubmitHandler = async (event) => {
+  const isFormValid = () => {
+    return data.name && data.description && data.price && image !== 'No file chosen';
+  };
+
+  const onSubmitHandler = debounce(async (event) => {
     event.preventDefault();
-    const fileInput = document.getElementById('image');
-    const file = fileInput.files[0]; 
+    if (!isFormValid() || loading) return; // Prevent multiple submissions
+
+    if (loading) return; // Prevent multiple clicks
+    setLoading(true);
+    const file = event.target.image.files[0]; // Use React event handling
 
     const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("price", Number(data.price));
-    formData.append("description", data.description);
-    formData.append("category", data.category);
-    formData.append("image",file);
+    formData.append('name', data.name);
+    formData.append('price', Number(data.price) || 0); // Ensure valid number
+    formData.append('description', data.description);
+    formData.append('category', data.category);
+    formData.append('image', file);
 
     try {
-
-      const response = await axios.post(`${url}/api/food/addItem`, formData)
-
-      if (response.status === 201) {
+      const response = await axios.post(`${url}/api/food/addItem`, formData);
+      if (response.data.success) {
+        toast.success(response.data.message);
         setData({
-          name: "",
-          description: "",
-          price: "",
-          category: "Salad",
+          name: '',
+          description: '',
+          price: '',
+          category: 'Salad',
         });
         setImage('No file chosen');
         setPreviewImage(null);
-        toast.success(response.data.message)
+        navigate('/list');
       } else {
-        toast.error(response.data.message)
+        toast.error(response.data.message);
       }
     } catch (error) {
-     toast.error(error.message)
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
-  };
+  },1000);
 
   return (
     <div className='add-item-container'>
@@ -94,6 +108,7 @@ function AddItems({url}) {
             <input
               type='file'
               id='image'
+              name='image'
               hidden
               required
               onChange={handleFileChange}
@@ -139,7 +154,11 @@ function AddItems({url}) {
           ></textarea>
         </div>
 
-        <button type='submit' className='primary-button'>Add</button>
+        <button type='submit' className='primary-button' disabled={!isFormValid() || loading}>
+          {loading ? 'Adding...' : 'Add'}
+        </button>
+
+        {loading && <CircleLoader />}
       </form>
     </div>
   );
