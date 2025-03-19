@@ -10,9 +10,21 @@ import orderRoute from "./routes/orderRoute.js";
 const app = express();
 
 // CORS configuration
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.HOSTED_FRONTEND,
+  process.env.HOSTED_ADMIN,
+];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || process.env.HOSTED_FRONTEND || process.env.HOSTED_ADMIN,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, origin);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
