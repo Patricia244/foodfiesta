@@ -51,15 +51,28 @@
     border: 1px solid black;
     color: black;
   }
-
   .footer {
-    background-color: #333;
-    color: white;
     padding: 20px;
+    background-color: #39304a;
+    color: white;
+    width: 100%;
     text-align: center;
   }
   
   .footer p {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
+  
+  .footer nav {
+    margin-top: 10px;
+  }
+  
+  .footer nav a{
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  

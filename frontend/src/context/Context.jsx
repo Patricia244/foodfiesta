@@ -9,8 +9,6 @@ const StoreContextProvider = ({ children }) => {
   const [token, setToken] = useState("");
 
   const url = process.env.REACT_APP_BACKEND_URL;
-  console.log(url); // Should log: https://foodfiesta-ot7x.onrender.com
-
   const addToCart = async (itemId) => {
     if (cartItems[itemId]) {
       setCartItems({ ...cartItems, [itemId]: cartItems[itemId] + 1 });

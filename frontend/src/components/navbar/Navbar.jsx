@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Navbar.css';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ function Navbar({ setShowLogin }) {
   const [menu, setMenu] = useState("Home");
   const { cartItems, token, setToken } = useContext(StoreContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const cartItemCount = Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);
+  const [cartCount, setCartCount] = useState(0);
   const navigate = useNavigate();
 
   const logout = () => {
@@ -27,12 +27,12 @@ function Navbar({ setShowLogin }) {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const scrollToFeaturedProducts = () => {
-    const featuredProductsSection = document.getElementById('featured-products');
-    if (featuredProductsSection) {
-      featuredProductsSection.scrollIntoView({ behavior: 'smooth' });
+  useEffect(() => {
+    if (cartItems) {
+      const totalItems = Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);
+      setCartCount(totalItems);
     }
-  };
+  }, [cartItems]);
   return (
     <div className='navbar'>
       <Link to='/'>
@@ -46,12 +46,12 @@ function Navbar({ setShowLogin }) {
           <Link to='/'>
             <li onClick={() => setMenu("Home")} className={menu === "Home" ? "active" : ""}>Home</li>
           </Link>
-          <Link>
-            <li onClick={() => { setMenu("Menu"); scrollToFeaturedProducts(); }} className={menu === "Menu" ? "active" : ""}>Menu</li>
+          <Link to='/menu'>
+            <li className={menu === "Menu" ? "active" : ""}>Menu</li>
           </Link>
           <Link to='/cart'>
             <li>
-              <Badge badgeContent={cartItemCount} color="error">
+              <Badge badgeContent={cartCount} color="error">
                 <ShoppingCartOutlinedIcon className='cart-icon' onClick={() => setMenu("cart")} />
               </Badge>
             </li>

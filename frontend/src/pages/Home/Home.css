@@ -1,10 +1,11 @@
-.home-container{
+.home-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: 40px 20px;
+  background-color: #f9f9f9;
 }
+
 .header {
   display: flex;
   width: 98%;
@@ -13,9 +14,12 @@
   justify-content: center;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  background-image: url('../../assets/images/backgroundImage.jpg'); 
+  background-image: url('../../assets/images/backgroundImage.jpg');
   background-size: cover;
   background-position: center;
+  padding: 60px 20px;
+  border-radius: 10px;
+  margin-bottom: 40px;
 }
 
 .header-content {
@@ -53,26 +57,31 @@
 }
 
 .featured-products {
+  display: flex;
+  flex-direction: column;
   padding: 40px 20px;
-  background-color: #f9f9f9;
+  background-color: white;
+  width: 100%;
+  text-align: center;
+  flex-wrap: wrap;
 }
 
 .featured-products h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #333;
-  text-align: center;
+  color: #6c5b7b;
 }
 
-.product-list {
+.product-grid {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+  padding: 1rem
 }
 
-.product {
-  width: 30%;
+.product-card {
+  width: 20%;
   min-width: 250px;
   background-color: white;
   border: 1px solid #ddd;
@@ -82,33 +91,97 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.product:hover {
+.product-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.product-image {
+.product-card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
-.product h3 {
+.product-card h3 {
   margin: 15px 0 10px;
   font-size: 1.5rem;
   color: #333;
-  text-align: center;
 }
 
-.product p {
+.product-card p {
   margin: 0 15px 15px;
   color: #555;
+}
+.testimonials {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  width: 100%;
   text-align: center;
 }
 
-html {
-  scroll-behavior: smooth;
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #6c5b7b;
 }
+
+.testimonial-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-grid img{
+  width: 100px;
+  height: 100px;
+}
+.testimonial-card {
+  width: 30%;
+  min-width: 250px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-card p {
+  font-style: italic;
+  color: #555;
+}
+
+.about-us {
+  padding: 40px 20px;
+  background-color: white;
+  width: 100%;
+  text-align: center;
+}
+
+.about-us h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #6c5b7b;
+}
+
+.about-us p {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #555;
+  line-height: 1.6;
+}
+
+.explore-more:hover {
+  color: #6c5b7b;
+  cursor: pointer;
+}
+
 
 @media (max-width: 768px) {
   .header h1 {
@@ -119,7 +192,8 @@ html {
     font-size: 1.2rem;
   }
 
-  .product {
+  .product-card,
+  .testimonial-card {
     width: 45%;
   }
 }
@@ -133,7 +207,17 @@ html {
     font-size: 1rem;
   }
 
-  .product {
+  .product-card,
+  .testimonial-card {
+    width: 100%;
+  }
+
+  .newsletter form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .newsletter input {
     width: 100%;
   }
 }
