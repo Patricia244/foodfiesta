@@ -1,8 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './ExploreMenu.css';
-import { menuList } from '../../../assets/images/assets';
+import { menuList } from '../../assets/images/assets';
+import FoodDisplay from '../foodDisplay/FoodDisplay';
 
-function ExploreMenu({ category, setCategory }) {
+function ExploreMenu() {
+  const [category, setCategory] = useState("all");
   return (
     <div className='exploreMenu' id='exploreMenu'>
       <h1 className='exploreMenu-heading'>Explore our menu</h1>
@@ -15,6 +17,7 @@ function ExploreMenu({ category, setCategory }) {
           </div>
         ))}
       </div>
+      <FoodDisplay category={category}/>
     </div>
   );
 }

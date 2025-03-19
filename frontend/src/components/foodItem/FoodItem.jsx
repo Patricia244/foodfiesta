@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './FoodItem.css';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
-import { StoreContext } from '../../../../context/Context';
+import { StoreContext } from '../../context/Context';
 
 function FoodItem({ image, name, price, description, id }) {
   const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
@@ -13,7 +13,7 @@ function FoodItem({ image, name, price, description, id }) {
         <div className="food-item-image-container">
           <img className='food-item-image' src={`${url}/uploads/${image}`} alt={name} />
           <div className="food-item-quantity-container">
-            {cartItems[id] > 0 ? (
+            {cartItems && cartItems[id] > 0 ? (
               <div className='food-item-quantity'>
                 <RemoveCircleOutlineOutlinedIcon
                   className="food-item-remove-btn"

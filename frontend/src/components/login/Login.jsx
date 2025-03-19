@@ -7,6 +7,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 function Login({setShowLogin}) {
   const [currentState, setCurrentState] = useState("Login")
   const {url,setToken} = useContext(StoreContext)
@@ -30,7 +31,7 @@ setData((prevData) => ({ ...prevData, [name]: value }));
  }
  try {
   const response = await axios.post(newUrl, data)
-  if(response.status ===200){
+  if(response.data.success){
     setToken(response.data.token)
     localStorage.setItem("token",response.data.token)
     setShowLogin(false)
