@@ -46,7 +46,6 @@ export const deleteFoodItem = async (req, res) => {
         } else {
           fs.unlink(filePath, (err) => {
             if (err) {
-              console.log(`Error deleting file: ${err.message}`);
               return res.status(500).json({ success: false, error: err.message });
             }
           });

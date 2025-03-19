@@ -93,7 +93,6 @@ try {
     const orders = await orderModel.find({userId:req.body.userId})
     res.status(200).json({ success: true, order: orders});
 } catch (error) {
-  console.log("Error placing order:", error);
   res.status(500).json({ success: false, message: error.message });
 }
 }
@@ -102,7 +101,6 @@ try {
   const orders = await orderModel.find({})
   res.status(200).json({ success: true, order: orders});
 } catch (error) {
-  console.log("Error placing order:", error);
   res.status(500).json({ success: false, message: error.message });
   
 }
@@ -113,7 +111,6 @@ export const updateStatus = async(req,res)=>{
     await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status})
     res.status(200).json({ success: true, order: 'Status updated'});
   } catch (error) {
-    console.log("Error placing order:", error);
     res.status(500).json({ success: false, message: error.message }); 
   }
 }

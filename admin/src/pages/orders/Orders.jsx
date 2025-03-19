@@ -17,7 +17,6 @@ function Orders({ url }) {
         toast.error('Error fetching orders');
       }
     } catch (error) {
-      console.log(error)
       toast.error(`Error: ${error.message}`);
     }
   };
