@@ -10,7 +10,7 @@ function Sidebar() {
   const navigate = useNavigate()
   return (
     <div className="sidebar-container">
-      <h1 className="logo" onClick={navigate('/')}>Food Fiesta</h1> 
+      <h1 className="logo" onClick={() => navigate('/')}>Food Fiesta</h1> 
       <Divider />
       <div className="Sidebar">
         <div className="sidebarWrapper">
